@@ -66,8 +66,12 @@ sudo rm -rfv /Library/Logs/Adobe/* &>/dev/null
 rm -rfv ~/Library/Containers/com.apple.mail/Data/Library/Logs/Mail/* &>/dev/null
 rm -rfv ~/Library/Logs/CoreSimulator/* &>/dev/null
 
-echo 'Clear Adobe Cache Files...'
-sudo rm -rfv ~/Library/Application\ Support/Adobe/Common/Media\ Cache\ Files/* &>/dev/null
+echo 'Cleanup Spotify Cache'
+sudo rm -rfv "/Users/aso/Library/Application Support/Spotify/PersistentCache/Storage" &>/dev/null
+
+echo 'Cleanup Slack Cache'
+sudo rm -rfv "/Users/aso/Library/Application Support/Slack/Cache/" &>/dev/null
+
 
 echo 'Cleanup iOS Applications...'
 rm -rfv ~/Music/iTunes/iTunes\ Media/Mobile\ Applications/* &>/dev/null
@@ -87,11 +91,6 @@ if type "xcrun" &>/dev/null; then
   osascript -e 'tell application "Simulator" to quit'
   xcrun simctl shutdown all
   xcrun simctl erase all
-fi
-
-if [ -d "/Users/${HOST}/Library/Caches/CocoaPods" ]; then
-    echo 'Cleanup CocoaPods cache...'
-    rm -rfv ~/Library/Caches/CocoaPods/* &>/dev/null
 fi
 
 # support delete gradle caches
@@ -148,10 +147,6 @@ if type "npm" &> /dev/null; then
     npm cache clean --force
 fi
 
-if type "yarn" &> /dev/null; then
-    echo 'Cleanup Yarn Cache...'
-    yarn cache clean --force
-fi
 
 echo 'Purge inactive memory...'
 sudo purge
