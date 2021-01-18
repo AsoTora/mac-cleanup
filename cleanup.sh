@@ -72,7 +72,6 @@ sudo rm -rfv "/Users/aso/Library/Application Support/Spotify/PersistentCache/Sto
 echo 'Cleanup Slack Cache'
 sudo rm -rfv "/Users/aso/Library/Application Support/Slack/Cache/" &>/dev/null
 
-
 echo 'Cleanup iOS Applications...'
 rm -rfv ~/Music/iTunes/iTunes\ Media/Mobile\ Applications/* &>/dev/null
 
@@ -147,6 +146,8 @@ if type "npm" &> /dev/null; then
     npm cache clean --force
 fi
 
+echo 'Cleanup downloads folder...'
+rm -rfv ~/Downloads/*
 
 echo 'Purge inactive memory...'
 sudo purge
